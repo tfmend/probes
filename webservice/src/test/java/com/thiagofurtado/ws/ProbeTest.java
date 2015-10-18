@@ -1,8 +1,12 @@
-package com.thiagofurtado;
+package com.thiagofurtado.ws;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.thiagofurtado.api.Direction;
+import com.thiagofurtado.api.Position;
+import com.thiagofurtado.ws.Probe;
 
 /**
  * @author thiago

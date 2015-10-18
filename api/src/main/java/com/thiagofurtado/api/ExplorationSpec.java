@@ -1,4 +1,4 @@
-package com.thiagofurtado;
+package com.thiagofurtado.api;
 
 import java.util.List;
 

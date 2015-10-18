@@ -1,4 +1,4 @@
-package com.thiagofurtado;
+package com.thiagofurtado.ws;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -13,6 +13,12 @@ import org.codehaus.jackson.type.TypeReference;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.thiagofurtado.api.Direction;
+import com.thiagofurtado.api.ExplorationResult;
+import com.thiagofurtado.api.ExplorationSpec;
+import com.thiagofurtado.api.Position;
+import com.thiagofurtado.api.ProbeExplorationSpec;
 
 public class ExplorationServiceIT {
 	private static String endpointUrl;

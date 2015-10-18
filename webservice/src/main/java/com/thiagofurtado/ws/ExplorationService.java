@@ -1,4 +1,4 @@
-package com.thiagofurtado;
+package com.thiagofurtado.ws;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import com.thiagofurtado.api.ExplorationResult;
+import com.thiagofurtado.api.ExplorationSpec;
+import com.thiagofurtado.api.ProbeExplorationSpec;
 
 @Path("/")
 public class ExplorationService {

@@ -1,4 +1,7 @@
-package com.thiagofurtado;
+package com.thiagofurtado.ws;
+
+import com.thiagofurtado.api.Direction;
+import com.thiagofurtado.api.Position;
 
 /**
  * @author thiago
