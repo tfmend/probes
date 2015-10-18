@@ -9,6 +9,12 @@ public class Position {
 	private int y;
 
 	/**
+	 * Empty constructor required by Jackson JSON Binding
+	 */
+	public Position() {
+	}
+
+	/**
 	 * @param x
 	 * @param y
 	 */

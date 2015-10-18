@@ -12,8 +12,8 @@ public class Plateau {
 	 *
 	 */
 	public Plateau(int xAxisLength, int yAxisLength) {
-		if (xAxisLength <= 0 || yAxisLength <= 0) {
-			throw new IllegalArgumentException("A plateau has at least size 1x1");
+		if (xAxisLength < 0 || yAxisLength < 0) {
+			throw new IllegalArgumentException("A plateau has at least the point 0x0");
 		}
 		this.xAxisLength = xAxisLength;
 		this.yAxisLength = yAxisLength;

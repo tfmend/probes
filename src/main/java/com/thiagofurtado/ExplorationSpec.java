@@ -3,34 +3,61 @@ package com.thiagofurtado;
 import java.util.List;
 
 public class ExplorationSpec {
-	private int[] coords;
-	private List<Position> probePaths;
+
+	/*
+	 * Input first line
+	 */
+	private int plateauXBound;
+	private int plateauYBound;
+
+	private List<ProbeExplorationSpec> probePaths;
 
 	/**
-	 * @return coords
+	 * Empty constructor required by Jackon JSON Binding
 	 */
-	public int[] getCoords() {
-		return this.coords;
+	public ExplorationSpec() {
 	}
 
 	/**
-	 * @param coords
+	 * @return plateauXBound
 	 */
-	public void setCoords(int[] coords) {
-		this.coords = coords;
+	public int getPlateauXBound() {
+		return this.plateauXBound;
+	}
+
+	/**
+	 * @param plateauXBound
+	 */
+	public void setPlateauXBound(int plateauXBound) {
+		this.plateauXBound = plateauXBound;
+	}
+
+	/**
+	 * @return plateauYBound
+	 */
+	public int getPlateauYBound() {
+		return this.plateauYBound;
+	}
+
+	/**
+	 * @param plateauYBound
+	 */
+	public void setPlateauYBound(int plateauYBound) {
+		this.plateauYBound = plateauYBound;
 	}
 
 	/**
 	 * @return probePaths
 	 */
-	public List<Position> getProbePaths() {
+	public List<ProbeExplorationSpec> getProbePaths() {
 		return this.probePaths;
 	}
 
 	/**
 	 * @param probePaths
 	 */
-	public void setProbePaths(List<Position> probePaths) {
+	public void setProbePaths(List<ProbeExplorationSpec> probePaths) {
 		this.probePaths = probePaths;
 	}
+
 }
