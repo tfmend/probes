@@ -9,7 +9,7 @@ import java.util.List;
  * @author thiago
  */
 public enum Direction {
-	NORTH, SOUTH, WEST, EAST;
+	NORTH, EAST, SOUTH, WEST;
 
 	/**
 	 * Unmodifiable list of the enum values.

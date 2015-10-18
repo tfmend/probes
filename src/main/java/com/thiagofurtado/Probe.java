@@ -5,21 +5,17 @@ package com.thiagofurtado;
  */
 public class Probe {
 
-	private final Plateau plateau;
-
 	private final Position position;
 
 	private Direction direction;
 
 	/**
-	 * @param plateau
-	 * @param path
+	 * @param position
 	 * @param direction
 	 */
-	public Probe(Plateau plateau, Position path, Direction direction) {
+	public Probe(Position position, Direction direction) {
 		super();
-		this.plateau = plateau;
-		this.position = path;
+		this.position = position;
 		this.direction = direction;
 	}
 
@@ -38,40 +34,42 @@ public class Probe {
 	}
 
 	/**
-	 * @param moveTo
+	 *
 	 */
-	public void move(Direction moveTo) {
-
-		switch (moveTo) {
+	public void move() {
+		switch (this.direction) {
 		case NORTH:
-			if (this.position.getY() == (this.plateau.getyAxisLength() - 1)) {
-				throw new IllegalArgumentException("Not possible to move towards north");
-			}
 			this.position.setY(this.position.getY() + 1);
 			break;
 		case SOUTH:
-			if (this.position.getY() == 0) {
-				throw new IllegalArgumentException("Not possible to move towards south");
-			}
 			this.position.setY(this.position.getY() - 1);
 			break;
 		case EAST:
-			if (this.position.getX() == (this.plateau.getxAxisLength())) {
-				throw new IllegalArgumentException("Not possible to move towards east");
-			}
 			this.position.setX(this.position.getX() + 1);
 			break;
 		case WEST:
-			if (this.position.getX() == 0) {
-				throw new IllegalArgumentException("Not possible to move towards west");
-			}
 			this.position.setX(this.position.getX() - 1);
 			break;
 		default:
-			throw new IllegalArgumentException("Direction " + moveTo + " does not exist. Available ones are ");
+			throw new IllegalStateException();
 		}
+	}
 
-		/* updates direction */
-		this.direction = moveTo;
+	/**
+	 *
+	 */
+	public void turnLeft() {
+		int ord = (this.direction.ordinal() - 1) % Direction.getValues().size();
+		if (ord == -1) {
+			ord = Direction.getValues().size() - 1;
+		}
+		this.direction = Direction.valueOf(ord);
+	}
+
+	/**
+	 *
+	 */
+	public void turnRight() {
+		this.direction = Direction.valueOf((this.direction.ordinal() + 1) % Direction.getValues().size());
 	}
 }
