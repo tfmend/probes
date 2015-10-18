@@ -69,4 +69,30 @@ public class ExplorationServiceIT {
 							&& result.getFinalPosition().equals(new Position(5, 1))));
 		}
 	}
+
+	@Test
+	public void testRESTNoProbes() throws Exception {
+		List<Object> providers = new ArrayList<Object>();
+		providers.add(new org.codehaus.jackson.jaxrs.JacksonJsonProvider());
+
+		ExplorationSpec exploration = new ExplorationSpec();
+		exploration.setPlateauXBound(5);
+		exploration.setPlateauYBound(5);
+
+		List<ProbeExplorationSpec> probePaths = new ArrayList<>();
+		exploration.setProbePaths(probePaths);
+
+		WebClient client = WebClient.create(endpointUrl + "/explore", providers);
+		Response response = client.accept("application/json").type("application/json").post(exploration);
+
+		Assert.assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+
+		MappingJsonFactory factory = new MappingJsonFactory();
+		JsonParser parser = factory.createJsonParser((InputStream) response.getEntity());
+		List<ExplorationResult> output = parser.readValueAs(new TypeReference<List<ExplorationResult>>() {
+		});
+
+		Assert.assertNotNull(output);
+		Assert.assertTrue(output.size() == 0);
+	}
 }
