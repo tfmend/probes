@@ -38,12 +38,47 @@ public class ProbeController {
 				this.probe.turnRight();
 				break;
 			case 'M':
+				if (!this.validateMovement()) {
+					throw new IllegalArgumentException(
+							"Not possible to move probe towards " + this.probe.getDirection());
+				}
 				this.probe.move();
 				break;
 			default:
 				throw new IllegalArgumentException("Unknow command " + command);
 			}
 		}
+	}
+
+	/**
+	 * @return
+	 */
+	private boolean validateMovement() {
+		switch (this.probe.getDirection()) {
+		case NORTH:
+			if (this.probe.getPosition().getY() == (this.plateau.getyAxisLength())) {
+				return false;
+			}
+			break;
+		case SOUTH:
+			if (this.probe.getPosition().getY() == 0) {
+				return false;
+			}
+			break;
+		case EAST:
+			if (this.probe.getPosition().getX() == (this.plateau.getxAxisLength())) {
+				return false;
+			}
+			break;
+		case WEST:
+			if (this.probe.getPosition().getX() == 0) {
+				return false;
+			}
+			break;
+		default:
+			throw new IllegalStateException();
+		}
+		return true;
 	}
 
 }
