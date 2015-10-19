@@ -1,5 +1,7 @@
 # probes simulation in Mars
 
+[![Build Status](https://travis-ci.org/tfmend/probes.svg?branch=master)](https://travis-ci.org/tfmend/probes)
+
 This is a RESTful implementation of a Mars's exploration simulation
 to demonstrate the use of Apache CXF as the REST framework.
 
