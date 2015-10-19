@@ -71,4 +71,10 @@ public class ProbeExplorationSpec {
 		this.initialDirection = initialDirection;
 	}
 
+	@Override
+	public String toString() {
+		return "ProbeExplorationSpec [path=" + this.path + ", initialPosition=" + this.initialPosition
+				+ ", initialDirection=" + this.initialDirection + "]";
+	}
+
 }

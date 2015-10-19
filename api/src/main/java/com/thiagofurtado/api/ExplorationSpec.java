@@ -60,4 +60,9 @@ public class ExplorationSpec {
 		this.probePaths = probePaths;
 	}
 
+	@Override
+	public String toString() {
+		return "ExplorationSpec [plateauXBound=" + this.plateauXBound + ", plateauYBound=" + this.plateauYBound
+				+ ", probePaths=" + this.probePaths + "]";
+	}
 }

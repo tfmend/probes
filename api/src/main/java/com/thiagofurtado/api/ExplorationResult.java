@@ -54,4 +54,10 @@ public class ExplorationResult {
 		this.finalDirection = finalDirection;
 	}
 
+	@Override
+	public String toString() {
+		return this.finalPosition.getX() + " " + this.finalPosition.getY() + " "
+				+ this.finalDirection.toString().charAt(0);
+	}
+
 }
