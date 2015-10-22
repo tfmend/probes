@@ -1,11 +1,7 @@
 package com.thiagofurtado.cli;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.cli.CommandLine;
@@ -25,11 +21,8 @@ import org.codehaus.jackson.map.MappingJsonFactory;
 import org.codehaus.jackson.type.TypeReference;
 
 import com.google.gson.Gson;
-import com.thiagofurtado.api.Direction;
 import com.thiagofurtado.api.ExplorationResult;
 import com.thiagofurtado.api.ExplorationSpec;
-import com.thiagofurtado.api.Position;
-import com.thiagofurtado.api.ProbeExplorationSpec;
 
 /**
  * @author thiago
@@ -99,78 +92,9 @@ public class CliApplication {
 		}
 	}
 
-	/**
-	 * @param file
-	 * @return
-	 */
-	private ExplorationSpec buildExplorationSpecFromFile(File file) {
-
-		ExplorationSpec spec = new ExplorationSpec();
-		List<ProbeExplorationSpec> specs = new ArrayList<>();
-		spec.setProbePaths(specs);
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new FileReader(file));
-
-			boolean readPlateau = false;
-			boolean alternate = false;
-			Position position = null;
-			Direction direction = null;
-			for (String line; (line = br.readLine()) != null;) {
-				if (!readPlateau) {
-					String[] split = line.split(" ");
-					int x = Integer.valueOf(split[0]);
-					int y = Integer.valueOf(split[1]);
-					spec.setPlateauXBound(x);
-					spec.setPlateauYBound(y);
-					readPlateau = true;
-				} else {
-					if (!alternate) {
-						String[] split = line.split(" ");
-						int initialX = Integer.valueOf(split[0]);
-						int initialY = Integer.valueOf(split[1]);
-						String initialDirection = split[2];
-						position = new Position(initialX, initialY);
-						direction = this.getDirection(initialDirection);
-					} else {
-						specs.add(new ProbeExplorationSpec(line, position, direction));
-					}
-					alternate = !alternate;
-				}
-			}
-		} catch (FileNotFoundException e) {
-			throw new RuntimeException(e);
-
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-
-		}
-		return spec;
-	}
-
-	/**
-	 * @param initialDirection
-	 * @return
-	 */
-	private Direction getDirection(String initialDirection) {
-		switch (initialDirection) {
-		case "N":
-			return Direction.NORTH;
-		case "S":
-			return Direction.SOUTH;
-		case "E":
-			return Direction.EAST;
-		case "W":
-			return Direction.WEST;
-
-		default:
-			throw new IllegalArgumentException();
-		}
-	}
-
 	private void explorate() {
 		File file = new File(this.inputFilePath);
-		ExplorationSpec explorationSpec = this.buildExplorationSpecFromFile(file);
+		ExplorationSpec explorationSpec = new ExplorationSpecBuilder().buildExplorationSpecFromFile(file);
 		try {
 			this.sendExplorationRequest(explorationSpec, this.serverUrl);
 		} catch (JsonParseException e) {

@@ -12,3 +12,7 @@ buildNumber.properties
 .project
 .classpath
 .settings/
+
+# Idea files
+.idea/
+*.iml
